@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router';
 import Root from '../layout/Root';
+import Firstpage from '../components/firstPage/Firstpage';
 
 const Router = createBrowserRouter([{
     path: '/',
@@ -8,7 +9,7 @@ const Router = createBrowserRouter([{
     children: [
         {
             path: '/',
-            element: <h2>here we will show total from </h2>
+            element: <Firstpage></Firstpage>
         },
 
     ]
