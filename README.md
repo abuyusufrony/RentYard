@@ -1,13 +1,44 @@
-# React + Vite
+# 🏡 Property Listing UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive and interactive UI for managing property listings, built with React and Tailwind CSS. It allows users to input, update, and manage detailed real estate information such as pet fees, nearby stations and landmarks, utility providers, and more.
 
-Currently, two official plugins are available:
+🌐 **Live Demo**: [overjoyed-day.surge.sh](http://overjoyed-day.surge.sh/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# RentYard
+- 📋 **Property Type Selection** – Choose from multiple property types with icon-based cards.
+- 👤 **Role Selection** – Define the role of the user (owner, agent, manager).
+- 🐾 **Pet Fees Manager** – Add, edit, and delete pet fee details with dynamic modals.
+- 🚉 **Nearest Station & Landmark** – Provide proximity data for public transport and landmarks.
+- ⚡ **Utilities Provider Input** – Capture utility type and provider information.
+- 💬 **Responsive Modals** – Clean, accessible modals for form inputs.
+- 🎨 **Modern UI** – Tailwind CSS-based design with consistent spacing and responsive layout.
+
+---
+
+## 🔧 Tech Stack
+
+- **React** – JavaScript UI library for building interactive interfaces
+- **Tailwind CSS** – Utility-first CSS framework for rapid UI development
+- **React Icons** – Icon library for consistent visual design
+- **Surge** – Simple static site hosting
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v16+ recommended)
+- npm or yarn
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/property-ui.git
+cd property-ui
+npm install
+# or
+yarn install
