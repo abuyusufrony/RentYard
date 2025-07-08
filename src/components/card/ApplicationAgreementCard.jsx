@@ -12,7 +12,7 @@ export default function ApplicationAgreementCard() {
     });
 
     const handleChange = (e) => {
-        const { name, value, type, checked, files } = e.target;
+        const { name, type, checked, files } = e.target;
         if (type === 'checkbox') {
             setForm((prev) => ({ ...prev, [name]: checked }));
         } else if (type === 'file') {
@@ -33,34 +33,34 @@ export default function ApplicationAgreementCard() {
     return (
         <div className="p-4">
             <div
-                className={`border-2 ${info ? 'border-green-500' : 'border-slate-200'} rounded-xl p-4 transition relative`}
+                className={`border ${info ? 'border-green-500' : 'border-slate-200'} rounded-[20px] w-[628px] h-[66px] px-6 py-4 transition relative flex items-center gap-[32px] cursor-pointer`}
                 onClick={() => !info && setIsModalOpen(true)}
             >
                 {info ? (
-                    <div className="space-y-2">
-                        <h3 className="font-semibold text-gray-700 mb-2 border-b border-gray-300 pb-1">
-                            Application Agreement <span className="text-sm text-gray-400">(Optional)</span>
-                        </h3>
-                        <div className="bg-slate-50 border border-gray-200 p-4 rounded-xl">
-                            <p className="text-sm text-gray-800 flex flex-col gap-2">
-                                {info.pdfFile && <span><strong>Uploaded:</strong> {info.pdfFile.name}</span>}
-                                <span><strong>International Students:</strong> {info.acceptInternational ? 'Accepted' : 'Not Accepted'}</span>
-                            </p>
+                    <div className="flex justify-between items-center w-full relative">
+                        <div className="text-sm text-gray-800 flex flex-wrap gap-x-4 gap-y-1 w-full">
+                            {info.pdfFile && (
+                                <span><strong>Uploaded:</strong> {info.pdfFile.name}</span>
+                            )}
+                            <span><strong>International Students:</strong> {info.acceptInternational ? 'Accepted' : 'Not Accepted'}</span>
                         </div>
 
                         <button
-                            className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                            className="absolute top-1 right-2 text-red-500 hover:text-red-700"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleDelete();
                             }}
+                            title="Delete Application Agreement Info"
                         >
                             <FaTrashAlt />
                         </button>
                     </div>
                 ) : (
-                    <div className="text-lg flex justify-between items-center text-gray-700">
-                        <span>Application Agreement <span className="text-sm text-gray-400 ml-1">(Optional)</span></span>
+                    <div className="flex justify-between items-center w-full text-gray-700">
+                        <span className="text-base font-medium">
+                            Application Agreement <span className="text-sm text-gray-400 ml-1">(Optional)</span>
+                        </span>
                         <FaPlus />
                     </div>
                 )}

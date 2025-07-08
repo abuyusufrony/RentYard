@@ -33,22 +33,21 @@ export default function RentReminderModalCard() {
 
     return (
         <div className="p-4">
+            {/* Card */}
             <div
-                className={`border-2 ${info ? 'border-green-500' : 'border-slate-200'} rounded-xl p-2 transition relative`}
+                className={`border ${info ? 'border-green-500' : 'border-slate-200'} rounded-[20px] w-[628px] h-[66px] px-6 py-4 transition relative flex items-center gap-[32px] cursor-pointer`}
                 onClick={() => !info && setIsModalOpen(true)}
             >
                 {info ? (
-                    <div className="text-left space-y-1">
-                        <h3 className="font-semibold text-gray-700 mb-2 border-b-2 border-b-slate-400">
-                            Rent frequency & payment reminder (Required)
-                        </h3>
-                        <div className="border border-gray-200 rounded-xl p-4 bg-slate-50 text-sm text-gray-800 space-y-2">
-                            <p><strong>Frequency:</strong> {info.frequency}</p>
-                            <p><strong>Reminder Date:</strong> {info.reminderDate}</p>
-                            <p><strong>Due Date:</strong> {info.dueDate}</p>
+                    <div className="flex justify-between items-center w-full relative">
+                        <div className="text-sm text-gray-800 flex flex-wrap gap-x-4 gap-y-1 w-full">
+                            <span><strong>Frequency:</strong> {info.frequency}</span>
+                            <span><strong>Reminder Date:</strong> {info.reminderDate}</span>
+                            <span><strong>Due Date:</strong> {info.dueDate}</span>
                         </div>
+
                         <button
-                            className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                            className="absolute top-1 right-2 text-red-500 hover:text-red-700"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleDelete();
@@ -59,13 +58,16 @@ export default function RentReminderModalCard() {
                         </button>
                     </div>
                 ) : (
-                    <div className="text-lg flex justify-between gap-2">
-                        <span>Rent frequency & payment reminder (Required)</span>
+                    <div className="flex justify-between items-center w-full text-gray-600">
+                        <span className="text-base font-medium">
+                            Rent frequency & payment reminder (Required)
+                        </span>
                         <FaPlus />
                     </div>
                 )}
             </div>
 
+            {/* Modal */}
             {isModalOpen && (
                 <RentReminderModal
                     form={form}

@@ -13,32 +13,49 @@ import NearestInstitutionModalCard from '../card/NearestInstitutionCard';
 import NearestStationModalCard from '../card/NearestStationModalCard';
 import NearestLandmarkModalCard from '../card/NearestLandmarkModalCard';
 import UtilitiesProvider from '../card/UtilitiesProvider';
+import { Link } from 'react-router';
+import PropertyMediaForm from '../PropertyMediaForm/PropertyMediaForm';
 
 
 const Info = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+        <div>
             <div>
-                <AddressModalCard></AddressModalCard>
-                <LeasingModalCard></LeasingModalCard>
-                <ChargesModalCard></ChargesModalCard>
-                <RentReminderModalCard></RentReminderModalCard>
-                <ApplicationAgreementCard></ApplicationAgreementCard>
-                <AboutPropertyCard></AboutPropertyCard>
-                <CommunityFeaturesCard></CommunityFeaturesCard>
-
-
-            </div>
-            <div>
-                <PetFeesCard></PetFeesCard>
-                <ParkingCard></ParkingCard>
-                <NearestInstitutionModalCard></NearestInstitutionModalCard>
-                <NearestStationModalCard></NearestStationModalCard>
-                <NearestLandmarkModalCard></NearestLandmarkModalCard>
-                <UtilitiesProvider></UtilitiesProvider>
-
+                <h2 className='p-6 ml-6 mt-2  text-2xl font-semibold'>Condominiums information</h2>
             </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+
+                <div>
+                    <AddressModalCard></AddressModalCard>
+                    <LeasingModalCard></LeasingModalCard>
+                    <ChargesModalCard></ChargesModalCard>
+                    <RentReminderModalCard></RentReminderModalCard>
+                    <ApplicationAgreementCard></ApplicationAgreementCard>
+                    <AboutPropertyCard></AboutPropertyCard>
+                    <CommunityFeaturesCard></CommunityFeaturesCard>
+
+
+                </div>
+                <div>
+                    <PetFeesCard></PetFeesCard>
+                    <ParkingCard></ParkingCard>
+                    <NearestInstitutionModalCard></NearestInstitutionModalCard>
+                    <NearestStationModalCard></NearestStationModalCard>
+                    <NearestLandmarkModalCard></NearestLandmarkModalCard>
+                    <UtilitiesProvider></UtilitiesProvider>
+
+                </div>
+
+            </div>
+
+            <div>
+                <PropertyMediaForm></PropertyMediaForm>
+            </div>
+            <div className="btn-container flex justify-between">
+                <button className='btn  mb-2'> <Link to={'/'}> Back </Link></button>
+                <button className='btn btn-primary mb-2'> <Link to={'/info/plan'}> Next </Link></button>
+            </div>
         </div>
     );
 };

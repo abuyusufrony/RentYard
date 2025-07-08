@@ -47,41 +47,53 @@ export default function PetFeesCard() {
     return (
         <div className="p-4">
             <div
-                className={`border-2 ${info ? 'border-green-500' : 'border-slate-200'} rounded-xl p-2 transition relative`}
+                className={`
+                    w-[628px] 
+                    ${info ? 'h-auto border-green-500' : 'h-[66px] border-slate-200 hover:border-blue-500'} 
+                    rounded-[20px] border-2 
+                    px-6 py-4 
+                    relative 
+                    cursor-pointer 
+                    transition
+                    flex
+                    items-center
+                    justify-between
+                    gap-[32px]
+                `}
                 onClick={() => !info && setIsModalOpen(true)}
             >
                 {info ? (
-                    <div className="text-left">
-                        <div className="flex justify-between items-center mb-2 border-b-2 border-slate-400 pb-1">
-                            <h3 className="font-semibold text-gray-700">Pet fees</h3>
-                            <div className="flex items-center gap-2">
-                                <button
-                                    className="text-blue-500 hover:text-blue-700"
-                                    onClick={handleEdit}
-                                >
-                                    <FaEdit />
-                                </button>
-                                <button
-                                    className="text-red-500 hover:text-red-700"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleDelete();
-                                    }}
-                                >
-                                    <FaTrashAlt />
-                                </button>
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-800">
+                    <>
+                        <div className="flex-1 text-left text-gray-800 text-sm flex flex-wrap gap-x-6 gap-y-2">
                             <p><strong>Pet Type:</strong> {info.petType}</p>
                             <p><strong>Max Weight:</strong> {info.maxWeight} lb</p>
                             <p><strong>One-Time Fee:</strong> ${info.oneTimeFee}</p>
                             <p><strong>Security Deposit:</strong> ${info.securityDeposit}</p>
                             <p><strong>Monthly Rent:</strong> ${info.monthlyRent}</p>
                         </div>
-                    </div>
+
+                        <div className="absolute top-4 right-4 flex items-center gap-4">
+                            <button
+                                className="text-blue-500 hover:text-blue-700"
+                                onClick={handleEdit}
+                                title="Edit Pet Fees"
+                            >
+                                <FaEdit />
+                            </button>
+                            <button
+                                className="text-red-500 hover:text-red-700"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDelete();
+                                }}
+                                title="Delete Pet Fees"
+                            >
+                                <FaTrashAlt />
+                            </button>
+                        </div>
+                    </>
                 ) : (
-                    <div className="text-lg flex justify-between gap-2">
+                    <div className="w-full flex justify-between items-center text-lg text-gray-700">
                         <span>Pet fees</span>
                         <FaPlus />
                     </div>

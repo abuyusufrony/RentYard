@@ -11,25 +11,36 @@ export default function UtilitiesProvider() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!utilityType || !providerName) return; // simple required validation
+        if (!utilityType || !providerName) return;
         setSavedUtility({ utilityType, providerName });
         closeModal();
+    };
+
+    const handleDelete = (e) => {
+        e.stopPropagation();
+        setSavedUtility(null);
+        setUtilityType("");
+        setProviderName("");
+    };
+
+    const handleEdit = (e) => {
+        e.stopPropagation();
+        if (savedUtility) {
+            setUtilityType(savedUtility.utilityType);
+            setProviderName(savedUtility.providerName);
+            openModal();
+        }
     };
 
     return (
         <>
             {/* Card */}
             <div
-                className="flex items-center justify-between cursor-pointer px-6"
-                style={{
-                    width: "628px",
-                    height: "66px",
-                    border: "1px solid #ccc",
-                    borderRadius: "20px",
-                    gap: "32px",
-                    backgroundColor: "white",
-                }}
-                onClick={openModal}
+                className={`relative flex items-center justify-between cursor-pointer w-[628px] ${savedUtility
+                        ? "border-2 border-green-500 h-auto"
+                        : "border-2 border-slate-200 hover:border-blue-500 h-[66px]"
+                    } rounded-[20px] bg-white p-4 gap-[32px] transition-colors duration-200 shadow-sm`}
+                onClick={() => !savedUtility && openModal()}
             >
                 <div>
                     <div className="font-semibold text-gray-700 text-base">
@@ -39,9 +50,31 @@ export default function UtilitiesProvider() {
                 </div>
 
                 {savedUtility ? (
-                    <div className="text-gray-700 font-medium">
-                        {savedUtility.utilityType} — {savedUtility.providerName}
-                    </div>
+                    <>
+                        <div className="text-gray-700 font-medium">
+                            {savedUtility.utilityType} — {savedUtility.providerName}
+                        </div>
+
+                        {/* Edit & Delete buttons absolutely positioned */}
+                        <div className="absolute top-4 right-6 flex gap-6 text-gray-600">
+                            <button
+                                onClick={handleEdit}
+                                aria-label="Edit"
+                                className="hover:text-blue-600"
+                                type="button"
+                            >
+                                ✏️
+                            </button>
+                            <button
+                                onClick={handleDelete}
+                                aria-label="Delete"
+                                className="hover:text-red-600"
+                                type="button"
+                            >
+                                🗑️
+                            </button>
+                        </div>
+                    </>
                 ) : (
                     <button
                         onClick={(e) => {
@@ -49,6 +82,7 @@ export default function UtilitiesProvider() {
                             openModal();
                         }}
                         className="text-blue-600 font-semibold hover:text-blue-800"
+                        type="button"
                     >
                         Add
                     </button>
@@ -65,6 +99,7 @@ export default function UtilitiesProvider() {
                                 onClick={closeModal}
                                 className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
                                 aria-label="Close modal"
+                                type="button"
                             >
                                 &times;
                             </button>

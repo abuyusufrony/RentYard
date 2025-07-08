@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../assets/logo.png'
-import { useLocation } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
 
 const Nav = () => {
@@ -18,7 +18,7 @@ const Nav = () => {
                     {loaction.pathname === '/' ?
                         <button className="btn  mr-3"> Exit</button>
                         :
-                        <button className="btn  mr-3">Save & Exit</button>
+                        <button className="btn  mr-3"><Link to={'/'}>Save & Exit</Link></button>
                     }
                 </div>
 

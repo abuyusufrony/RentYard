@@ -57,10 +57,21 @@ export default function NearestLandmarkModalCard() {
     };
 
     return (
-        <div>
+        <div className="p-4">
             <div
-                className={`border rounded-lg p-3 cursor-pointer flex justify-between items-center ${info ? 'border-green-500' : 'border-gray-300 hover:border-blue-500'
-                    } transition-colors duration-200 shadow-sm bg-white max-w-md`}
+                className={`
+          relative
+          w-[628px]
+          ${info ? 'h-auto border-green-500' : 'h-[66px] border-slate-200 hover:border-blue-500'}
+          rounded-[20px]
+          border-2
+          cursor-pointer
+          transition-colors duration-200
+          flex items-center justify-between
+          px-6 py-4
+          bg-white
+          shadow-sm
+          `}
                 onClick={() => !info && openModal(false)}
             >
                 <span className="text-gray-700 font-semibold text-base">
@@ -79,7 +90,7 @@ export default function NearestLandmarkModalCard() {
                         size={18}
                     />
                 ) : (
-                    <div className="flex space-x-4 text-gray-600">
+                    <div className="absolute top-4 right-6 flex items-center gap-6 text-gray-600">
                         <FaEdit
                             className="hover:text-blue-600 cursor-pointer"
                             onClick={(e) => {
@@ -100,7 +111,7 @@ export default function NearestLandmarkModalCard() {
             </div>
 
             {info && (
-                <div className="max-w-md mt-2 px-4 py-2 bg-gray-50 rounded-md text-sm text-gray-700 shadow-inner">
+                <div className="max-w-[628px] mt-2 px-6 py-3 bg-gray-50 rounded-[20px] text-sm text-gray-700 shadow-inner">
                     <strong>Type:</strong> {info.type} | <strong>Distance:</strong> {info.distanceValue} {info.distanceUnit} |{' '}
                     <strong>Name:</strong> {info.name}
                 </div>

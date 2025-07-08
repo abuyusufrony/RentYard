@@ -47,7 +47,7 @@ export default function NearestInstitutionModalCard() {
     };
 
     const handleDelete = (e) => {
-        e.stopPropagation(); // Prevent card click
+        e.stopPropagation();
         setInfo(null);
         setForm({
             type: '',
@@ -58,15 +58,53 @@ export default function NearestInstitutionModalCard() {
     };
 
     return (
-        <div>
+        <div className="p-4">
             <div
-                className={`border-2 ${info ? 'border-green-500' : 'border-slate-200'
-                    } rounded-xl p-4 cursor-pointer`}
-                onClick={() => !info && openModal(false)} // only open modal for add if no info
+                className={`
+                    w-[628px]
+                    ${info ? 'h-auto border-green-500' : 'h-[66px] border-slate-200 hover:border-blue-500'}
+                    rounded-[20px] border-2
+                    relative
+                    cursor-pointer
+                    transition
+                    flex items-center justify-between gap-[32px]
+                    px-6 py-4
+                `}
+                onClick={() => !info && openModal(false)}
             >
-                <div className="text-lg flex justify-between items-center text-gray-700 font-semibold mb-2">
-                    <span>Nearest educational institution (optional but recommended)</span>
-                    {!info ? (
+                {info ? (
+                    <>
+                        <div className="flex-1 text-left text-gray-800 text-sm">
+                            <p>
+                                <strong>Type:</strong> {info.type} |{' '}
+                                <strong>Distance:</strong> {info.distanceValue} {info.distanceUnit} |{' '}
+                                <strong>Name:</strong> {info.name}
+                            </p>
+                        </div>
+
+                        <div className="absolute top-4 right-4 flex items-center gap-4">
+                            <button
+                                className="text-blue-500 hover:text-blue-700"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    openModal(true);
+                                }}
+                                title="Edit nearest institution"
+                            >
+                                <FaEdit size={18} />
+                            </button>
+                            <button
+                                className="text-red-500 hover:text-red-700"
+                                onClick={handleDelete}
+                                title="Delete nearest institution"
+                            >
+                                <FaTrash size={18} />
+                            </button>
+                        </div>
+                    </>
+                ) : (
+                    <div className="w-full flex justify-between items-center text-lg text-gray-700">
+                        <span>Nearest educational institution (optional but recommended)</span>
                         <FaPlus
                             className="text-gray-500 hover:text-blue-600 cursor-pointer"
                             onClick={(e) => {
@@ -76,39 +114,17 @@ export default function NearestInstitutionModalCard() {
                             title="Add nearest educational institution"
                             size={18}
                         />
-                    ) : (
-                        <div className="flex space-x-4 text-gray-600">
-                            <FaEdit></FaEdit>
-                            className="hover:text-blue-600 cursor-pointer"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                openModal(true);
-                            }}
-                            title="Edit"
-                            size={18}
-                            />
-                            <FaTrash
-                                className="hover:text-red-600 cursor-pointer"
-                                onClick={handleDelete}
-                                title="Delete"
-                                size={18}
-                            />
-                        </div>
-                    )}
-                </div>
-
-                {info ? (
-                    <div className="text-sm text-gray-700">
-                        <strong>Type:</strong> {info.type} | <strong>Distance:</strong> {info.distanceValue} {info.distanceUnit} |{' '}
-                        <strong>Name:</strong> {info.name}
                     </div>
-                ) : (
-                    <div className="text-gray-500"></div>
                 )}
             </div>
 
             {isModalOpen && (
-                <NearestInstitutionModal form={form} onChange={handleChange} onCancel={handleCancel} onAdd={handleAdd} />
+                <NearestInstitutionModal
+                    form={form}
+                    onChange={handleChange}
+                    onCancel={handleCancel}
+                    onAdd={handleAdd}
+                />
             )}
         </div>
     );

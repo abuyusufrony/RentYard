@@ -57,26 +57,26 @@ export default function NearestStationModalCard() {
     };
 
     return (
-        <div>
+        <div className="p-4">
             <div
-                className={`border-2 ${info ? 'border-green-500' : 'border-slate-200'
-                    } rounded-xl p-4 cursor-pointer`}
+                className={`
+          w-[628px]
+          ${info ? 'h-auto border-green-500' : 'h-[66px] border-slate-200 hover:border-blue-500'}
+          rounded-[20px]
+          border-2
+          relative
+          cursor-pointer
+          transition
+          flex flex-col justify-center
+          px-6 py-4
+        `}
                 onClick={() => !info && openModal(false)}
             >
-                <div className="text-lg flex justify-between items-center text-gray-700 font-semibold mb-2">
+                <div className="flex justify-between items-center mb-2 text-lg text-gray-700 font-semibold relative">
                     <span>Nearest stations (Optional but recommended)</span>
-                    {!info ? (
-                        <FaPlus
-                            className="text-gray-500 hover:text-blue-600 cursor-pointer"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                openModal(false);
-                            }}
-                            title="Add nearest station"
-                            size={18}
-                        />
-                    ) : (
-                        <div className="flex space-x-4 text-gray-600">
+
+                    {info ? (
+                        <div className="absolute top-4 right-6 flex items-center gap-4">
                             <FaEdit
                                 className="hover:text-blue-600 cursor-pointer"
                                 onClick={(e) => {
@@ -93,6 +93,16 @@ export default function NearestStationModalCard() {
                                 size={18}
                             />
                         </div>
+                    ) : (
+                        <FaPlus
+                            className="text-gray-500 hover:text-blue-600 cursor-pointer"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                openModal(false);
+                            }}
+                            title="Add nearest station"
+                            size={18}
+                        />
                     )}
                 </div>
 

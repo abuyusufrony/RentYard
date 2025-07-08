@@ -15,13 +15,15 @@ export default function PropertyForm() {
     const handleRoleSelect = (role) => setSelectedRole(role);
     const handlePropertyTypeSelect = (type) => setSelectedPropertyType(type);
 
+    const cardStyle = 'w-[410px] h-[96px] p-5 border border-gray-300 rounded-[12px] cursor-pointer flex items-center gap-4 shadow-sm transition-all';
+
     return (
         <div className="p-4 md:p-6 space-y-8 max-w-7xl mx-auto">
 
             {/* Property Types */}
             <div>
                 <h2 className="text-xl font-bold mb-4 text-gray-800">Select Property Type</h2>
-                <div className="flex flex-wrap gap-4 justify-between">
+                <div className="flex  gap-6">
                     {[
                         { key: 'single', title: 'Single House Property', icon: <CgHome />, desc: 'Single unit for single family' },
                         { key: 'apartment', title: 'Apartments Complex', icon: <RiBuilding2Line />, desc: 'Multiple unit house for families' },
@@ -29,15 +31,13 @@ export default function PropertyForm() {
                     ].map(prop => (
                         <div
                             key={prop.key}
-                            className={`card w-full sm:w-80 shadow-md cursor-pointer transition-all border-2 rounded-xl ${selectedPropertyType === prop.key ? 'border-sky-500 bg-sky-50' : 'border-gray-200'
-                                }`}
+                            className={`${cardStyle} ${selectedPropertyType === prop.key ? 'border-sky-500 bg-sky-50' : 'hover:border-sky-400'}`}
                             onClick={() => handlePropertyTypeSelect(prop.key)}
                         >
-                            <div className="card-body p-4">
-                                <h3 className="card-title font-semibold text-lg flex items-center gap-2">
-                                    {prop.icon} {prop.title}
-                                </h3>
-                                <p className="text-sm text-gray-600 mt-1">{prop.desc}</p>
+                            <div className="text-2xl text-sky-500">{prop.icon}</div>
+                            <div>
+                                <h3 className="text-md font-semibold text-gray-800">{prop.title}</h3>
+                                <p className="text-sm text-gray-500">{prop.desc}</p>
                             </div>
                         </div>
                     ))}
@@ -47,7 +47,7 @@ export default function PropertyForm() {
             {/* Role Selection */}
             <div>
                 <h2 className="text-xl font-bold mb-4 text-gray-800">Select Your Role</h2>
-                <div className="flex flex-wrap gap-4 justify-between">
+                <div className="flex  gap-6">
                     {[
                         { key: 'landlord', title: 'Landlord', icon: <IoKeyOutline />, desc: 'Owner of the property' },
                         { key: 'realtor', title: 'Realtor', icon: <GoPerson />, desc: 'Manage property on behalf of owner' },
@@ -55,25 +55,23 @@ export default function PropertyForm() {
                     ].map(role => (
                         <div
                             key={role.key}
-                            className={`card w-full sm:w-80 shadow-md cursor-pointer transition-all border-2 rounded-xl ${selectedRole === role.key ? 'border-sky-500 bg-sky-50' : 'border-gray-200'
-                                }`}
+                            className={`${cardStyle} ${selectedRole === role.key ? 'border-sky-500 bg-sky-50' : 'hover:border-sky-400'}`}
                             onClick={() => handleRoleSelect(role.key)}
                         >
-                            <div className="card-body p-4">
-                                <h3 className="card-title font-semibold text-lg flex items-center gap-2">
-                                    {role.icon} {role.title}
-                                </h3>
-                                <p className="text-sm text-gray-600 mt-1">{role.desc}</p>
+                            <div className="text-2xl text-sky-500">{role.icon}</div>
+                            <div>
+                                <h3 className="text-md font-semibold text-gray-800">{role.title}</h3>
+                                <p className="text-sm text-gray-500">{role.desc}</p>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            {/* Conditional Role-Based Sections */}
+            {/* Conditional Sections for Role */}
             {selectedRole === 'landlord' && (
                 <div className="border-2 rounded-xl p-4">
-                    <h2 className="text-lg font-semibold bg-slate-100 p-2 rounded-t">Proof of Ownership</h2>
+                    <h2 className="text-lg  text-gray-800  mb-4 bg-gray-100 p-2 rounded-lg">Proof of Ownership</h2>
                     <p className="mt-4 font-medium">Ownership Document <span className="text-red-500">*</span></p>
                     <label className="inline-flex items-center gap-2 mt-2 px-4 py-2 bg-sky-100 text-slate-700 rounded-lg cursor-pointer hover:bg-sky-200 transition">
                         <FiUpload className="text-xl" />
@@ -90,7 +88,7 @@ export default function PropertyForm() {
 
             {selectedRole === 'realtor' && (
                 <div className="border-2 rounded-xl p-4">
-                    <h2 className="text-lg font-semibold bg-slate-100 p-2 rounded-t">Realtor Verification</h2>
+                    <h2 className="text-lg  text-gray-800  mb-4 bg-gray-100 p-2 rounded">Realtor Verification</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                         <div>
                             <label className="block font-medium mb-1">License Number <span className="text-red-500">**</span></label>
@@ -116,10 +114,9 @@ export default function PropertyForm() {
             )}
 
             {selectedRole === 'company' && (
-                <form className="border rounded-xl p-4 bg-white shadow">
-                    <h2 className="text-lg font-semibold mb-4 bg-slate-50 p-2 rounded">Company & Office Info</h2>
+                <form className="border rounded-xl w-[1280px] h-[450px] p-6 bg-white shadow">
+                    <h2 className="text-lg text-gray-800  mb-4 bg-gray-100 p-2 rounded">Company & Office Info</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-
                         {[
                             { label: 'Company name*' },
                             { label: 'Company Identifier (EIN/TIN)*' },
@@ -130,7 +127,6 @@ export default function PropertyForm() {
                                 <input type="text" className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1" />
                             </div>
                         ))}
-
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Agreement with landlord/owner*</label>
                             <input
@@ -139,7 +135,6 @@ export default function PropertyForm() {
                                 className="w-full border border-gray-300 rounded-md px-3 py-[0.52rem] mt-1 text-sm text-gray-600 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-gray-100 file:text-sm"
                             />
                         </div>
-
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Country/Region*</label>
                             <select className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 bg-white text-gray-700">
@@ -149,17 +144,14 @@ export default function PropertyForm() {
                                 <option>India</option>
                             </select>
                         </div>
-
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Street address*</label>
                             <input type="text" className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1" />
                         </div>
-
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Apt, suite, unit (optional)</label>
                             <input type="text" className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1" />
                         </div>
-
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Phone number*</label>
                             <div className="flex items-center gap-2 mt-1">
@@ -171,17 +163,14 @@ export default function PropertyForm() {
                                 <input type="text" className="flex-1 border border-gray-300 rounded-md px-3 py-2" />
                             </div>
                         </div>
-
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Contact email*</label>
                             <input type="email" className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1" />
                         </div>
-
                         <div>
                             <label className="block text-sm font-medium text-gray-700">City/Town*</label>
                             <input type="text" className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1" />
                         </div>
-
                         <div>
                             <label className="block text-sm font-medium text-gray-700">State/Territory*</label>
                             <select className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 bg-white text-gray-700">
@@ -191,13 +180,11 @@ export default function PropertyForm() {
                                 <option>Florida</option>
                             </select>
                         </div>
-
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Zip code*</label>
                             <input type="text" className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1" />
                         </div>
                     </div>
-
                     <div className="flex items-center space-x-2 pt-4">
                         <input type="checkbox" id="terms" className="accent-blue-500 rounded" />
                         <label htmlFor="terms" className="text-sm text-gray-700">
@@ -209,7 +196,9 @@ export default function PropertyForm() {
 
             <div className="flex flex-col sm:flex-row justify-between gap-4 pt-6">
                 <button className="btn border border-gray-300 rounded-md px-4 py-2 bg-white text-gray-700 hover:bg-gray-100 transition">Back</button>
-                <button className="btn bg-blue-600 text-white rounded-md px-6 py-2 hover:bg-blue-700 transition"> <Link to={'/info'}>Get Started</Link> </button>
+                <button className="btn bg-blue-600 text-white rounded-md px-6 py-2 hover:bg-blue-700 transition">
+                    <Link to={'/info'}>Get Started</Link>
+                </button>
             </div>
         </div>
     );
