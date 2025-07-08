@@ -6,6 +6,7 @@ import { IoKeyOutline } from 'react-icons/io5';
 import { GoPerson } from 'react-icons/go';
 import { FaPersonShelter } from 'react-icons/fa6';
 import { FiUpload } from 'react-icons/fi';
+import { Link } from 'react-router';
 
 export default function PropertyForm() {
     const [selectedRole, setSelectedRole] = useState(null);
@@ -208,7 +209,7 @@ export default function PropertyForm() {
 
             <div className="flex flex-col sm:flex-row justify-between gap-4 pt-6">
                 <button className="btn border border-gray-300 rounded-md px-4 py-2 bg-white text-gray-700 hover:bg-gray-100 transition">Back</button>
-                <button className="btn bg-blue-600 text-white rounded-md px-6 py-2 hover:bg-blue-700 transition">Get Started</button>
+                <button className="btn bg-blue-600 text-white rounded-md px-6 py-2 hover:bg-blue-700 transition"> <Link to={'/info'}>Get Started</Link> </button>
             </div>
         </div>
     );

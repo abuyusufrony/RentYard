@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from '../../assets/logo.png'
+import { useLocation } from 'react-router';
 
 
 const Nav = () => {
+
+    const loaction = useLocation()
     return (
         <div>
             <div className='flex justify-between'>
@@ -12,7 +15,11 @@ const Nav = () => {
                 </div>
 
                 <div>
-                    <button className='btn mr-3 '>Exit  </button>
+                    {loaction.pathname === '/' ?
+                        <button className="btn  mr-3"> Exit</button>
+                        :
+                        <button className="btn  mr-3">Save & Exit</button>
+                    }
                 </div>
 
 
